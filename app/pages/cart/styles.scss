@@ -3,9 +3,17 @@
     margin-top: 40px;
     margin-left: -10px;
     margin-right: -10px;
+    &:after {
+      content: " ";
+      display: table;
+      clear: both;
+    }
     .left {
       width: calc(100% - 320px);
       float: left;
+      .cost {
+        display: none;
+      }
       .header {
         display: flex;
         padding: 10px 0;
@@ -28,12 +36,12 @@
       width: 320px;
       float: left;
       margin-top: 40px;
-      .cost {
-        padding: 10px;
-        border: 1px solid $brand-gray;
-        h4 {
-          margin: 0;
-        }
+    }
+    .cost {
+      padding: 10px;
+      border: 1px solid $brand-gray;
+      h4 {
+        margin: 0;
       }
     }
     .title-section {
@@ -44,6 +52,37 @@
       .title {
         font-size: 24px;
         font-weight: 300;
+      }
+    }
+  }
+}
+
+@media (min-width: 0px) and (max-width: 850px) {
+  .cart {
+    .container {
+      .left {
+        width: 100%;
+        .cost {
+          margin-top: 20px;
+          display: block;
+        }
+      }
+      .right {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 0px) and (max-width: 520px) {
+  .cart {
+    .container {
+      .left {
+        .header {
+          .item {
+            width: 40%;
+          }
+        }
       }
     }
   }

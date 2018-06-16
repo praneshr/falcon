@@ -23,7 +23,7 @@ const ProductTile = ({
     </span>
   </span>)
   return (
-    <span styleName="tile">
+    <div styleName="tile">
       <div styleName="product-tile-container">
         <div styleName="product-tile">
           {
@@ -82,7 +82,7 @@ const ProductTile = ({
           </div>
         </div>
       </div>
-    </span>
+    </div>
   )
 }
 

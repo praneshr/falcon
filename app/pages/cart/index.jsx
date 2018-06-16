@@ -108,6 +108,13 @@ class Cart extends Component {
         count={count}
       />)
     })
+    const costNode = !loading
+      && <PriceContainer
+        count={computeCount(this.props.cart)}
+        originalPrice={computeTotal(this.props.cart, this.booksIndexed)}
+        discount={computeDiscount(this.props.cart, this.booksIndexed)}
+        typeDiscount={computeTypeDiscount(this.props.cart, this.booksIndexed, ['fiction'])}
+      />
     return (
       <div styleName="cart">
         <div styleName="container">
@@ -117,6 +124,9 @@ class Cart extends Component {
                 <span styleName="title">
                   <Link to="/books">&lt;</Link> Order Summary
                 </span>
+              </div>
+              <div styleName="cost">
+                {costNode}
               </div>
               <div styleName="products">
                 {
@@ -139,15 +149,7 @@ class Cart extends Component {
           <div styleName="right">
             <div styleName="padding-fix">
               <div styleName="cost">
-                {
-                  !loading
-                  && <PriceContainer
-                    count={computeCount(this.props.cart)}
-                    originalPrice={computeTotal(this.props.cart, this.booksIndexed)}
-                    discount={computeDiscount(this.props.cart, this.booksIndexed)}
-                    typeDiscount={computeTypeDiscount(this.props.cart, this.booksIndexed, ['fiction'])}
-                  />
-                }
+                {costNode}
               </div>
             </div>
           </div>

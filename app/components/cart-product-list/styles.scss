@@ -54,3 +54,11 @@
     }
   }
 }
+
+@media (min-width: 0px) and (max-width: 520px) {
+  .cart-product-list {
+    .left {
+      width: 40%;
+    }
+  }
+}

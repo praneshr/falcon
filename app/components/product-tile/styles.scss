@@ -65,3 +65,19 @@
     }
   }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .tile {
+    width: 33.3333%;
+  }
+}
+@media (min-width: 500px) and (max-width: 768px) {
+  .tile {
+    width: 50%;
+  }
+}
+@media (min-width: 0px) and (max-width: 500px) {
+  .tile {
+    width: 100%;
+  }
+}
