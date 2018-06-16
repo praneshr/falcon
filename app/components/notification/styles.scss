@@ -1,0 +1,18 @@
+.notification {
+  position: fixed;
+  z-index: 100;
+  top: -100px;
+  width: 300px;
+  padding: 5px 10px;
+  border-radius: 0 0 4px 4px;
+  text-align: center;
+  left: 50%;
+  margin-left: -150px;
+  background-color: $brand-green;
+  color: $white;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.2s ease;
+  &.show {
+    transform: translate3d(0, 100px, 0);
+  }
+}

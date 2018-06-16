@@ -1,0 +1,22 @@
+.books {
+  .container {
+    .title-section {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      border-bottom: 1px solid $brand-gray;
+      .title {
+        font-size: 24px;
+        font-weight: 300;
+      }
+    }
+    .products {
+      margin-top: 20px;
+      .result-container {
+        margin-left: -10px;
+        margin-right: -10px;
+      }
+    }
+  }
+}

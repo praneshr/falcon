@@ -13,7 +13,6 @@ reduxStore.subscribe(() => {
   })
 })
 
-
 ReactDOM.render(
   <Provider store={reduxStore}>
     <App />

@@ -9,22 +9,22 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "@apis": path.resolve(__dirname, './app/APIs'),
-      "@actions": path.resolve(__dirname, './app/actions'),
-      "@store": path.resolve(__dirname, './app/store'),
-      "@reducer": path.resolve(__dirname, './app/reducer'),
-      "@components": path.resolve(__dirname, './app/components'),
-      "@data": path.resolve(__dirname, './app/data'),
-      "@config": path.resolve(__dirname, './app/config'),
-      "@pages": path.resolve(__dirname, './app/pages'),
-      "@styles": path.resolve(__dirname, './app/styles/index.scss'),
-      "@assets": path.resolve(__dirname, './app/assets'),
+      '@apis': path.resolve(__dirname, './app/APIs'),
+      '@actions': path.resolve(__dirname, './app/actions'),
+      '@store': path.resolve(__dirname, './app/store'),
+      '@reducer': path.resolve(__dirname, './app/reducer'),
+      '@components': path.resolve(__dirname, './app/components'),
+      '@data': path.resolve(__dirname, './app/data'),
+      '@config': path.resolve(__dirname, './app/config'),
+      '@pages': path.resolve(__dirname, './app/pages'),
+      '@styles': path.resolve(__dirname, './app/styles/index.scss'),
+      '@assets': path.resolve(__dirname, './app/assets'),
     },
     extensions: ['.js', '.scss', '.jsx', '.png', '.svg', '.jpg'],
   },
   mode: 'development',
   devServer: {
-    contentBase: path.join(__dirname, "./build"),
+    contentBase: path.join(__dirname, './build'),
     index: 'index.html',
     historyApiFallback: true,
     overlay: true,
@@ -50,10 +50,10 @@ module.exports = {
         test: /\.scss$/,
         use: [
           {
-            loader: "style-loader",
+            loader: 'style-loader',
           },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               sourceMap: true,
               modules: true,
@@ -61,7 +61,7 @@ module.exports = {
             },
           },
           {
-            loader: "sass-loader",
+            loader: 'sass-loader',
             options: {
               sourceMap: true,
             },
@@ -86,6 +86,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './app/templates/index.ejs'),
       filename: 'index.html',
-    })
+    }),
   ],
 }
