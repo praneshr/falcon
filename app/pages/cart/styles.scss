@@ -1,0 +1,50 @@
+.cart {
+  .container {
+    margin-top: 40px;
+    margin-left: -10px;
+    margin-right: -10px;
+    .left {
+      width: calc(100% - 320px);
+      float: left;
+      .header {
+        display: flex;
+        padding: 10px 0;
+        border-bottom: 1px solid $brand-gray;
+        .item {
+          width: 70%;
+        }
+        .price {
+          margin: 0 10px 0 auto;
+        }
+      }
+      .products {
+        padding-top: 20px;
+        .values {
+          margin-top: 20px;
+        }
+      }
+    }
+    .right {
+      width: 320px;
+      float: left;
+      margin-top: 40px;
+      .cost {
+        padding: 10px;
+        border: 1px solid $brand-gray;
+        h4 {
+          margin: 0;
+        }
+      }
+    }
+    .title-section {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      border-bottom: 1px solid $brand-gray;
+      .title {
+        font-size: 24px;
+        font-weight: 300;
+      }
+    }
+  }
+}

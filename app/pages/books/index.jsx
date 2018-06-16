@@ -1,11 +1,11 @@
-import * as PropTypes from 'prop-types'
 import * as APIs from '@apis'
 import React, { Component } from 'react'
-import { createPortal } from 'react-dom'
+import PropTypes from 'prop-types'
 import { actions } from '@actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Link } from 'react-router-dom'
+import { computeCount } from '@utils'
 import ReactCSS from 'react-css-modules'
 import commonStyles from '@styles'
 import GoToCart from '@components/go-to-cart-button'
@@ -16,11 +16,13 @@ import styles from './styles'
 
 const mapStateToProps = store => ({
   cart: store.cart,
+  booksList: store.booksList,
 })
 
 const mapDispatchToProps = dispatch => ({
   getBooks: bindActionCreators(APIs.getBooks, dispatch),
   addToCart: bindActionCreators(actions.addToCart, dispatch),
+  setBookList: bindActionCreators(actions.booksList, dispatch),
 })
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -28,15 +30,24 @@ const mapDispatchToProps = dispatch => ({
 class Books extends Component {
   static propTypes = {
     getBooks: PropTypes.func.isRequired,
+    setBookList: PropTypes.func.isRequired,
     addToCart: PropTypes.func.isRequired,
+    booksList: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        price: PropTypes.number,
+        discount: PropTypes.number,
+        type: PropTypes.string,
+        img_url: PropTypes.string,
+      }),
+    ).isRequired,
     cart: PropTypes.object.isRequired, // [TODO]: Fix this later
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      listLoading: true,
-      booksList: [],
       showNotification: false,
       notificationMessage: '',
     }
@@ -45,32 +56,42 @@ class Books extends Component {
   }
 
   componentDidMount() {
-    this.props.getBooks()
-      .then(({ data }) => this.setState({
-        listLoading: false,
-        booksList: data,
-      }))
+    this.mounted = true
+    if (this.props.booksList.length === 0) {
+      this.props.getBooks()
+        .then(({ data }) => {
+          this.props.setBookList(data)
+        })
+    }
+  }
+
+  componentWillUnmount() {
+    this.mounted = false
   }
 
   triggerNotification(message) {
-    if (this.state.showNotification) {
-      return this.setState({
-        showNotification: false,
+    if (this.mounted) {
+      if (this.state.showNotification) {
+        return this.setState({
+          showNotification: false,
+        }, () => {
+          window.clearTimeout(this.timerId)
+          window.setTimeout(this.triggerNotification, 200, message)
+        })
+      }
+      this.setState({
+        showNotification: true,
+        notificationMessage: message,
       }, () => {
-        window.clearTimeout(this.timerId)
-        window.setTimeout(this.triggerNotification, 200, message)
+        this.timerId = window.setTimeout(() => {
+          if (this.mounted) {
+            this.setState({
+              showNotification: false,
+            })
+          }
+        }, 3000)
       })
     }
-    this.setState({
-      showNotification: true,
-      notificationMessage: message,
-    }, () => {
-      this.timerId = window.setTimeout(() => {
-        this.setState({
-          showNotification: false,
-        })
-      }, 3000)
-    })
   }
 
   addOrRemoveItemFromCart({ id, ...rest }, action) {
@@ -91,7 +112,7 @@ class Books extends Component {
   }
 
   render() {
-    const products = this.state.booksList.map(data => (<ProductTile
+    const products = this.props.booksList.map(data => (<ProductTile
       currencySymbol="$"
       onAddToCart={() => this.addOrRemoveItemFromCart(data, 'ADD')}
       onRemoveFromCart={() => this.addOrRemoveItemFromCart(data, 'REMOVE')}
@@ -99,10 +120,7 @@ class Books extends Component {
       key={data.id}
       countInCart={this.props.cart[data.id] || 0}
     />))
-    const cartCount = Object.keys(this.props.cart).reduce(
-      (value, key) => this.props.cart[key] + value,
-      0,
-    )
+    const cartCount = computeCount(this.props.cart)
     return (
       <div styleName="books">
         <Notification
@@ -128,7 +146,7 @@ class Books extends Component {
           </div>
           <div styleName="products">
             {
-              this.state.listLoading
+              this.props.booksList.length === 0
                 ? 'Loading...'
                 : <div styleName="result-container">
                   {products}

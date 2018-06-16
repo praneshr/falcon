@@ -1,0 +1,30 @@
+.price-container {
+  h4 {
+    margin: 0;
+  }
+  .price {
+    .row {
+      display: flex;
+      margin: 20px 0;
+      align-items: center;
+      justify-content: space-between;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      &.total {
+        font-size: 22px;
+        background-color: $brand-gray;
+        padding: 20px 10px;
+        margin: 0 -10px -10px;
+        .right {
+          justify-content: flex-end;
+        }
+      }
+      .right {
+        display: flex;
+        justify-content: space-between;
+        width: 30%;
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 const actionTypes = [
   'ADD_TO_CART',
-  'SAMPLE',
+  'BOOKS_LIST',
 ]
 
 export default actionTypes.reduce((obj, str) => {

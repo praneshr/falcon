@@ -10,6 +10,7 @@ module.exports = {
   resolve: {
     alias: {
       '@apis': path.resolve(__dirname, './app/APIs'),
+      '@utils': path.resolve(__dirname, './app/utils'),
       '@actions': path.resolve(__dirname, './app/actions'),
       '@store': path.resolve(__dirname, './app/store'),
       '@reducer': path.resolve(__dirname, './app/reducer'),
