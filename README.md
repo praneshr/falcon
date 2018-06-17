@@ -2,7 +2,7 @@
 
 A minimal shopping cart experience built using React, Redux and Webpack.
 
-![Books Shopping](https://image.ibb.co/cp0J4d/ezgif_com_video_to_gif_2.gif)
+![Books Shopping](https://image.ibb.co/gg6pud/ezgif_com_video_to_gif_3.gif)
 
 ## Tech Stack
 
@@ -44,7 +44,7 @@ This is a more straight forward way. The price container sticks to the top on sc
 
 ## Architecture & Implementation
 
-- The app is built on top of React's uni-directional data flow model
+- The app is built on top of React's unidirectional data flow
 - The `booksList` and `cart` info are stored in Redux store
 ```javascript
 const store = {
@@ -105,6 +105,13 @@ const store = {
 
 - The app is completely responsive.
 
+## Further Improvements
+
+- Index `booksList` before saving it in the store
+
+- When cart info is loaded from localstorage, check if the products in `cart` are available in `booksList`. If not, notify the user and clear the item from the cart. This ensures unavailable products won't get added to the cart
+
+- Most unit tests for UI elements
 
 ## Scripts
 
