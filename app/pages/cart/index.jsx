@@ -94,12 +94,12 @@ class Cart extends Component {
     const productContainer = this.productsContainer.current
     const { height, y: stickyContainerY } = elm.getBoundingClientRect()
     const { y: productContainerY } = productContainer.getBoundingClientRect()
-    // if (productContainerY === stickyContainerY) {
-    //   elm.style.top = '30px'
-    // }
-    // if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-    //   elm.style.top = `calc(100% - ${height}px)`
-    // }
+    if (productContainerY === stickyContainerY) {
+      elm.style.top = '30px'
+    }
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      elm.style.top = `calc(100% - ${height}px)`
+    }
   }
 
   onQuantityChange(id, value) {

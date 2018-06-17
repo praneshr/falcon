@@ -14,7 +14,7 @@ const ProductTile = ({
 }) => {
   const priceNode = `${currencySymbol}${data.price}`
   const newPrice = data.price - ((data.price * data.discount) / 100)
-  const discountPriceNode = (<span>
+  const discountPriceNode = (<span id="discounted-price">
     <span styleName="old-price">
       {priceNode}
     </span>
@@ -28,7 +28,7 @@ const ProductTile = ({
         <div styleName="product-tile">
           {
             data.discount !== 0
-            && <span styleName="discount">
+            && <span styleName="discount" id="discount">
               {data.discount}% off
             </span>
           }
@@ -52,6 +52,7 @@ const ProductTile = ({
                 {
                   countInCart === 0
                     ? <button
+                      id="add"
                       styleName="outline small"
                       onClick={onAddToCart}
                     >
@@ -59,6 +60,7 @@ const ProductTile = ({
                     </button>
                     : <span>
                       <button
+                        id="remove"
                         styleName="outline small"
                         onClick={onRemoveFromCart}
                       >
@@ -70,6 +72,7 @@ const ProductTile = ({
                         {countInCart}
                       </span>
                       <button
+                        id="add"
                         styleName="outline small"
                         onClick={onAddToCart}
                       >
@@ -98,11 +101,12 @@ ProductTile.propTypes = {
   currencySymbol: PropTypes.string,
   onAddToCart: PropTypes.func.isRequired,
   onRemoveFromCart: PropTypes.func.isRequired,
-  countInCart: PropTypes.number.isRequired,
+  countInCart: PropTypes.number,
 }
 
 ProductTile.defaultProps = {
   currencySymbol: '$',
+  countInCart: 0,
 }
 
 export default ReactCSS(

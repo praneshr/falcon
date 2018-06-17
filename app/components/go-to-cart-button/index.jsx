@@ -22,12 +22,13 @@ const GotoCartButton = props => (
 GotoCartButton.propTypes = {
   onClick: PropTypes.func,
   label: PropTypes.string,
-  itemCount: PropTypes.number.isRequired,
+  itemCount: PropTypes.number,
 }
 
 GotoCartButton.defaultProps = {
   label: 'Cart',
   onClick: () => { },
+  itemCount: 0,
 }
 
 export default ReactCSS(

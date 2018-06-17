@@ -28,7 +28,7 @@ const PriceContainer = ({
           discount > 0
           && <div styleName="row">
             <div>Discount</div>
-            <div styleName="right">
+            <div styleName="right" id="discount">
               <div>:</div>
               <div>- {currencySymbol}{discount.toFixed(2)}</div>
             </div>
@@ -38,7 +38,7 @@ const PriceContainer = ({
           typeDiscount > 0
           && <div styleName="row">
             <div>Type Discount</div>
-            <div styleName="right">
+            <div styleName="right" id="type-discount">
               <div>:</div>
               <div>- {currencySymbol}{typeDiscount.toFixed(2)}</div>
             </div>
@@ -58,13 +58,15 @@ const PriceContainer = ({
 PriceContainer.propTypes = {
   count: PropTypes.number.isRequired,
   originalPrice: PropTypes.number.isRequired,
-  discount: PropTypes.number.isRequired,
-  typeDiscount: PropTypes.number.isRequired,
+  discount: PropTypes.number,
+  typeDiscount: PropTypes.number,
   currencySymbol: PropTypes.string,
 }
 
 PriceContainer.defaultProps = {
   currencySymbol: '$',
+  discount: 0,
+  typeDiscount: 0,
 }
 
 

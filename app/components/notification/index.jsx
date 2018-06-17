@@ -16,7 +16,11 @@ const Notification = ({ message, show }) => {
 
 Notification.propTypes = {
   message: PropTypes.string.isRequired,
-  show: PropTypes.bool.isRequired,
+  show: PropTypes.bool,
+}
+
+Notification.defaultProps = {
+  show: false,
 }
 
 export default ReactCSS(
