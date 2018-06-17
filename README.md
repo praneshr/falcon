@@ -107,9 +107,9 @@ const store = {
 
 ## Further Improvements
 
-- Index `booksList` before saving it in the store
+- Index `booksList` before saving it to the store
 
-- When cart info is loaded from localstorage, check if the products in `cart` are available in `booksList`. If not, notify the user and clear the item from the cart. This ensures unavailable products won't get added to the cart
+- When cart info is loaded from localstorage, check if the products in `cart` are available in `booksList`. If not, notify the user and clear the item from the cart. This ensures no unavailable products are added to the cart.
 
 - Most unit tests for UI elements
 
