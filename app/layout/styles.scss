@@ -1,5 +1,13 @@
 .layout {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 10px;
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+  }
+  .header {
+    height: 60px;
+    width: 100%;
+    background-color: $brand-gray;
+    margin-bottom: 50px;
+  }
 }

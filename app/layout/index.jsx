@@ -13,13 +13,16 @@ class Layout extends Component {
   render() {
     return (
       <div styleName="layout">
-        <Router>
-          <Switch>
-            <Route path="/books" component={Books} />
-            <Route path="/cart" component={Cart} />
-            <Redirect from="/" to="/books" />
-          </Switch>
-        </Router>
+        <div styleName="header" />
+        <div styleName="container">
+          <Router>
+            <Switch>
+              <Route path="/books" component={Books} />
+              <Route path="/cart" component={Cart} />
+              <Redirect from="/" to="/books" />
+            </Switch>
+          </Router>
+        </div>
       </div>
     )
   }
