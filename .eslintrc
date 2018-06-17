@@ -1,6 +1,10 @@
 {
   "extends": ["airbnb"],
   "parser": "babel-eslint",
+  "env": {
+    "mocha": true,
+    "browser": true,
+  },
   "rules": {
     "semi": "off",
     "import/extensions": "never",

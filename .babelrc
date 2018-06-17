@@ -11,6 +11,12 @@
         "legacy": true
       }
     ],
+    [
+      "babel-plugin-webpack-aliases",
+      {
+        "config": "./webpack.config.js"
+      }
+    ],
     "@babel/plugin-proposal-object-rest-spread",
     "@babel/plugin-proposal-class-properties"
   ]
