@@ -12,7 +12,7 @@
     "build": "webpack --config webpack.config.prod.js --progress --colors",
     "start:dev": "webpack-dev-server --hot --open",
     "start": "serve -l 8080 -s build",
-    "test": "mocha --require setup/babel.js --require ignore-styles --require setup/css-modules.js --require setup/enzyme.js ./app/**/__tests__/*.js",
+    "test": "mocha --require setup/babel.js --require ignore-styles --require setup/css-modules.js --require setup/enzyme.js ./app/**/*.test.js",
     "test:watch": "mocha -w --require setup/babel.js --require ignore-styles --require setup/css-modules.js --require setup/enzyme.js ./app/**/*.test.js",
     "lint": "eslint app",
     "lint:fix": "eslint app --fix"

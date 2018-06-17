@@ -13,6 +13,6 @@ describe('Testing "Go to cart" button', () => {
 
   it('Should handle itemCount', () => {
     const node = shallow(<GoToCart label="test" itemCount={10} />)
-    expect(node.props().children).toHaveLength(2)
+    expect(node.props().children).toHaveLength(3)
   })
 })
