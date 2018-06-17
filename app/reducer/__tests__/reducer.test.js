@@ -5,7 +5,6 @@ import reducer from '../'
 
 
 describe('Testing Reducers', () => {
-
   it('Should handle ADD_TO_CART', () => {
     expect(reducer(
       {},
@@ -31,5 +30,4 @@ describe('Testing Reducers', () => {
       booksList: ['one'],
     })
   })
-
 })

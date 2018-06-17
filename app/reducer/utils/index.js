@@ -1,5 +1,3 @@
 import createState from './create-state'
 
-export {
-  createState,
-}
+export { createState }
