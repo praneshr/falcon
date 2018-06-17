@@ -68,6 +68,9 @@ module.exports = {
             },
           },
           {
+            loader: 'postcss-loader',
+          },
+          {
             loader: 'sass-resources-loader',
             options: {
               resources: [
@@ -80,7 +83,7 @@ module.exports = {
       {
         test: /\.(woff|woff2|svg|png|jpe?g)$/,
         use: 'file-loader',
-      }
+      },
     ],
   },
   plugins: [
