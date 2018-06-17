@@ -2,6 +2,7 @@
 
 A Minimal shopping cart experience built using React, Redux and Webpack.
 
+![Books Shopping](https://image.ibb.co/cp0J4d/ezgif_com_video_to_gif_2.gif)
 
 ## Tech Stack
 
@@ -38,6 +39,7 @@ yarn start
 Here, the price container sticks to the bottom as the scroll bar reaches the end of the page. The price container won't unstick as it won't be able to reach it's original position(Depends on the screen height).
 
 ![Stick to bottom](https://image.ibb.co/fWqCVJ/ezgif_com_video_to_gif_1.gif)
+
 This is a more straight forward way. The price container sticks to the top on scroll and unsticks when it reaches its original position.
 
 ## Architecture & Implementation
