@@ -145,6 +145,6 @@ Run `eslint` on app dir
 Run `eslint` and fix any linting errors
 
 
-## Liscense
+## License
 
 Apache License, Version 2.0
