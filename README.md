@@ -1,6 +1,6 @@
 # Falcon
 
-A Minimal shopping cart experience built using React, Redux and Webpack.
+A minimal shopping cart experience built using React, Redux and Webpack.
 
 ![Books Shopping](https://image.ibb.co/cp0J4d/ezgif_com_video_to_gif_2.gif)
 
