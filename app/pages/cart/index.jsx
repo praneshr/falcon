@@ -26,6 +26,7 @@ const mapDispatchToProps = dispatch => ({
   setBookList: bindActionCreators(actions.booksList, dispatch),
 })
 
+// Index book data for faster data fetching
 const indexBooks = (books) => {
   const indexedBooks = {}
   books.forEach((book) => { indexedBooks[book.id] = book })
@@ -71,16 +72,21 @@ class Cart extends Component {
             listLoading: false,
           })
         })
+        .catch((e) => {
+          alert('Something went wrong! Try again later')
+        })
     }
 
     document.addEventListener('scroll', this.onscroll)
   }
 
   componentWillReceiveProps(nextProps) {
+    // Update the index when new response is received
     if (this.props.booksList.length !== nextProps.booksList.length) {
       this.booksIndexed = indexBooks(nextProps.booksList)
     }
 
+    // Redirect to /books when cart is empty
     if (Object.keys(nextProps.cart).length === 0) {
       this.props.history.push('/books')
     }
@@ -95,16 +101,22 @@ class Cart extends Component {
     const productContainer = this.productsContainer.current
     const { height, y: stickyContainerY } = elm.getBoundingClientRect()
     const { y: productContainerY } = productContainer.getBoundingClientRect()
+
+    // Unstick the price container when it reaches it's original position
     if (productContainerY === stickyContainerY) {
       elm.style.top = '30px'
     }
+    // Stick the price container to the bottom of the container when
+    // the scrollbar hits the page end
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       elm.style.top = `calc(100% - ${height}px)`
     }
   }
 
   onQuantityChange(id, value) {
+    // Update the quantity of an item
     const cart = { ...this.props.cart }
+    // Show a confirmation box before removing an item from cart
     if (value === 0) {
       const confirm = window.confirm('Do you want to remove this item from cart?')
       if (confirm) {
@@ -132,10 +144,10 @@ class Cart extends Component {
     })
     const costNode = !loading
       && <PriceContainer
-        count={computeCount(this.props.cart)}
-        originalPrice={computeTotal(this.props.cart, this.booksIndexed)}
-        discount={computeDiscount(this.props.cart, this.booksIndexed)}
-        typeDiscount={computeTypeDiscount(this.props.cart, this.booksIndexed, ['fiction'])}
+        count={computeCount(this.props.cart)} // Compute the total number of items
+        originalPrice={computeTotal(this.props.cart, this.booksIndexed)} // Compute the total price
+        discount={computeDiscount(this.props.cart, this.booksIndexed)} // Compute the discount
+        typeDiscount={computeTypeDiscount(this.props.cart, this.booksIndexed, ['fiction'])} // Compute the typeDiscount
       />
     return (
       <div styleName="cart">

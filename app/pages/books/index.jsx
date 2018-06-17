@@ -42,7 +42,7 @@ class Books extends Component {
         img_url: PropTypes.string,
       }),
     ).isRequired,
-    cart: PropTypes.object.isRequired, // [TODO]: Fix this later
+    cart: PropTypes.object.isRequired,
   }
 
   constructor(props) {
@@ -57,10 +57,14 @@ class Books extends Component {
 
   componentDidMount() {
     this.mounted = true
+    // Check for booksList in store. If exists, skip network call
     if (this.props.booksList.length === 0) {
       this.props.getBooks()
         .then(({ data }) => {
           this.props.setBookList(data)
+        })
+        .catch((e) => {
+          alert('Something went wrong! Try again later')
         })
     }
   }
@@ -70,6 +74,8 @@ class Books extends Component {
   }
 
   triggerNotification(message) {
+    // Show notification with a timeout of 3s. On new notification
+    // before 3s, clear the timeout and trigger a new notification
     if (this.mounted) {
       if (this.state.showNotification) {
         return this.setState({
@@ -92,9 +98,12 @@ class Books extends Component {
         }, 3000)
       })
     }
+    return
   }
 
   addOrRemoveItemFromCart({ id, ...rest }, action) {
+    // Update the quantity of an item in the cart. The key will be the
+    // id of the item and the value will be the quantity of that item
     const cartData = { ...this.props.cart }
     switch (action) {
       case 'ADD':

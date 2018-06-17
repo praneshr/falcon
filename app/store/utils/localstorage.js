@@ -13,6 +13,7 @@ export const save = (state) => {
     const serializedState = JSON.stringify(state)
     localStorage.setItem('store', serializedState)
   } catch (e) {
+    console.error('Something went wrong with the localstorage!')
   }
   return undefined
 }
