@@ -4,12 +4,14 @@ import ReactCSS from 'react-css-modules'
 import commonStyles from '@styles'
 
 import styles from './styles'
+import cartIcon from '@assets/cart.svg'
 
 const GotoCartButton = props => (
   <button onClick={props.onClick} styleName="primary cart-info">
     <span>
       {props.label}
     </span>
+    <img src={cartIcon} alt="Cart" />
     {
       props.itemCount > 0
       && <span styleName="item-count">

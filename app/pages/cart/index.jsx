@@ -11,6 +11,7 @@ import commonStyles from '@styles'
 
 import ProductList from '@components/cart-product-list'
 import PriceContainer from '@components/price-container'
+import backIcon from '@assets/back.svg'
 
 import styles from './styles'
 
@@ -85,7 +86,7 @@ class Cart extends Component {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     document.removeEventListener('scroll', this.onscroll, false)
   }
 
@@ -143,7 +144,10 @@ class Cart extends Component {
             <div styleName="padding-fix">
               <div styleName="title-section">
                 <span styleName="title">
-                  <Link to="/books">&lt;</Link> Order Summary
+                  <Link to="/books">
+                    <img src={backIcon} alt="Back" />
+                  </Link>
+                  <span>Order Summary</span>
                 </span>
               </div>
               <div styleName="cost">

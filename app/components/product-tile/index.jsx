@@ -33,7 +33,7 @@ const ProductTile = ({
             </span>
           }
           <div styleName="top">
-            <img src={data.img_url} alt={data.name}/>
+            <img src={data.img_url} alt={data.name} />
           </div>
           <div styleName="bottom">
             <div styleName="title-container">
