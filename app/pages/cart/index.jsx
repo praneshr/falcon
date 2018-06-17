@@ -55,7 +55,10 @@ class Cart extends Component {
     this.state = {
       listLoading: this.props.booksList.length === 0,
     }
+    this.onscroll = this.onscroll.bind(this)
     this.booksIndexed = indexBooks(this.props.booksList)
+    this.stickyContainer = React.createRef()
+    this.productsContainer = React.createRef()
   }
 
   componentDidMount() {
@@ -68,9 +71,11 @@ class Cart extends Component {
           })
         })
     }
+
+    document.addEventListener('scroll', this.onscroll)
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.booksList.length !== nextProps.booksList.length) {
       this.booksIndexed = indexBooks(nextProps.booksList)
     }
@@ -80,6 +85,22 @@ class Cart extends Component {
     }
   }
 
+  componentWillUnmount () {
+    document.removeEventListener('scroll', this.onscroll, false)
+  }
+
+  onscroll() {
+    const elm = this.stickyContainer.current
+    const productContainer = this.productsContainer.current
+    const { height, y: stickyContainerY } = elm.getBoundingClientRect()
+    const { y: productContainerY } = productContainer.getBoundingClientRect()
+    // if (productContainerY === stickyContainerY) {
+    //   elm.style.top = '30px'
+    // }
+    // if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    //   elm.style.top = `calc(100% - ${height}px)`
+    // }
+  }
 
   onQuantityChange(id, value) {
     const cart = { ...this.props.cart }
@@ -128,7 +149,7 @@ class Cart extends Component {
               <div styleName="cost">
                 {costNode}
               </div>
-              <div styleName="products">
+              <div styleName="products" ref={this.productsContainer}>
                 {
                   loading
                     ? 'Loading...'
@@ -146,7 +167,7 @@ class Cart extends Component {
               </div>
             </div>
           </div>
-          <div styleName="right">
+          <div styleName="right" ref={this.stickyContainer}>
             <div styleName="padding-fix">
               <div styleName="cost">
                 {costNode}
